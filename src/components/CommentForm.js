@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 
 export default function CommentForm() {
-  const [succes, setSucces] = useState(null);
-  const { register, handleSubmit, errors, reset } = useForm();
+  const [status, setStatus] = useState("idle");
+  const { register, handleSubmit, errors } = useForm();
 
   console.log("errors", errors);
   //   console.log("WAT KOMT ER UIT USEFORM?", what);
@@ -22,68 +22,74 @@ export default function CommentForm() {
   //   lastName: 'Williams'
   // });
   async function postComment(data) {
-    console.log("WAT IS ER INGEVULD:", data);
+    // console.log("WAT IS ER INGEVULD:", data);
+    setStatus("submitting");
     try {
-      const response = await axios.post("http://localhost:8080/comments", {
-        name: data.name,
-        email: data.email,
-        body: data.body,
-        postId: parseInt(data.postId),
-      });
-      setSucces(true);
+      const response = await axios.post(
+        "https://jsonplaceholder.typicode.com/comments",
+        {
+          name: data.name,
+          email: data.email,
+          body: data.body,
+          postId: parseInt(data.postId),
+        }
+      );
+      setStatus("success");
 
       console.log("WAT KRIJGEN WE TERUG VAN DE API?", response);
     } catch (error) {
-      setSucces(false);
+      setStatus("error");
     }
-  }
-
-  if (succes) {
-    return <h1>Bedankt voor je comment</h1>;
   }
 
   return (
     <div>
       <h2>COMMENT FORM</h2>
-      <form onSubmit={handleSubmit(postComment)}>
-        <label htmlFor="name">Naam</label>
-        <input
-          name="name"
-          type="text"
-          ref={register({
-            required: true,
-            minLength: 3,
-            pattern: /^[a-zA-Z ]*$/,
-          })}
-        />
-        {errors.name?.type === "required" && <p>Vul aub uw naam in</p>}
-        {errors.name?.type === "minLength" && (
-          <p>Uw naam moet ten minste 3 karakters zijn</p>
-        )}
-        {errors.name?.type === "pattern" && (
-          <p>Gebruik alstublieft a tot z en spaties, geen speciale tekens</p>
-        )}
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="text"
-          ref={register({
-            validate: (value) => value.includes("@"),
-          })}
-        />
-        {errors.email?.type === "validate" && (
-          <p>Je moet een @ in je email adress hebben sufferd</p>
-        )}
-        <label htmlFor="body">Comment</label>
-        <textarea name="body" cols="30" rows="10" ref={register}></textarea>
-        <label htmlFor="postId">Op welke post wil je reageren</label>
-        <select name="postId" ref={register}>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-        </select>
-        <input type="submit" />
-      </form>
+      {status === "success" && <h3>Bedankt voor je comment!</h3>}
+      {["idle", "submitting", "error"].includes(status) && (
+        <form onSubmit={handleSubmit(postComment)}>
+          <label htmlFor="name">Naam</label>
+          <input
+            name="name"
+            type="text"
+            ref={register({
+              required: true,
+              minLength: 3,
+              pattern: /^[a-zA-Z ]*$/,
+            })}
+          />
+          {errors.name?.type === "required" && <p>Vul aub uw naam in</p>}
+          {errors.name?.type === "minLength" && (
+            <p>Uw naam moet ten minste 3 karakters zijn</p>
+          )}
+          {errors.name?.type === "pattern" && (
+            <p>Gebruik alstublieft a tot z en spaties, geen speciale tekens</p>
+          )}
+          <label htmlFor="email">Email</label>
+          <input
+            name="email"
+            type="text"
+            ref={register({
+              validate: (value) => value.includes("@"),
+            })}
+          />
+          {errors.email?.type === "validate" && (
+            <p>Je moet een @ in je email adress hebben sufferd</p>
+          )}
+          <label htmlFor="body">Comment</label>
+          <textarea name="body" cols="30" rows="10" ref={register}></textarea>
+          <label htmlFor="postId">Op welke post wil je reageren</label>
+          <select name="postId" ref={register}>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+          {status === "error" && (
+            <h3>Oh jee, er ging iets mis, probeer het nog eens</h3>
+          )}
+          <input type="submit" disabled={status === "submitting"} />
+        </form>
+      )}
     </div>
   );
 }
