@@ -21,8 +21,9 @@ Vraag: is er nog meer dan register, handleSubmit, errors?
 - Het maken van het formulieren
   - [x] Library installeren: npm install react-hook-form
   - [x] Apart component maken voor het formulier
-  - [ ] Invoer velden maken
-  - [ ] Submit knop
+  - [x] Invoer velden maken
+  - [x] Elk invoer veld moet een "name" attribuut hebben
+  - [x] Submit knop
   - [ ] Importeren useForm
 - Validatie
 - Feedback

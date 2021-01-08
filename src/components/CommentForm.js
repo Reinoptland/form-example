@@ -10,14 +10,14 @@ export default function CommentForm() {
     <div>
       <h2>COMMENT FORM</h2>
       <form>
-        <label>Naam</label>
-        <input type="text" />
-        <label>Email</label>
-        <input type="email" />
-        <label>Comment</label>
-        <textarea cols="30" rows="10"></textarea>
-        <label>Op welke post wil je reageren</label>
-        <select>
+        <label htmlFor="voornaam">Naam</label>
+        <input name="voornaam" type="text" />
+        <label htmlFor="email">Email</label>
+        <input name="email" type="email" />
+        <label htmlFor="comment">Comment</label>
+        <textarea name="comment" cols="30" rows="10"></textarea>
+        <label htmlFor="postId">Op welke post wil je reageren</label>
+        <select name="postId">
           <option>1</option>
           <option>2</option>
           <option>3</option>
