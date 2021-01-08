@@ -31,8 +31,8 @@ Vraag: is er nog meer dan register, handleSubmit, errors?
   - [ ] Wanneer is het geldig & Een foutmelding (feedback)
     - name:
       - [x] required (je moet het invullen)
-      - [ ] ten minste 3 karakters
-      - [ ] alleen abcd etc.. geen ~/@,
+      - [x] ten minste 3 karakters
+      - [x] alleen abcd etc.. geen ~/@,
     - email
       - [ ] Er moet @ (het moet een email zijn)
       - [ ] required

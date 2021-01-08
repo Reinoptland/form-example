@@ -22,11 +22,18 @@ export default function CommentForm() {
         <input
           name="name"
           type="text"
-          ref={register({ required: true, minLength: 3 })}
+          ref={register({
+            required: true,
+            minLength: 3,
+            pattern: /^[a-zA-Z ]*$/,
+          })}
         />
         {errors.name?.type === "required" && <p>Vul aub uw naam in</p>}
         {errors.name?.type === "minLength" && (
           <p>Uw naam moet ten minste 3 karakters zijn</p>
+        )}
+        {errors.name?.type === "pattern" && (
+          <p>Gebruik alstublieft a tot z en spaties, geen speciale tekens</p>
         )}
         <label htmlFor="email">Email</label>
         <input name="email" type="email" ref={register} />
