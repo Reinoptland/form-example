@@ -19,8 +19,15 @@ export default function CommentForm() {
       <h2>COMMENT FORM</h2>
       <form onSubmit={handleSubmit(postComment)}>
         <label htmlFor="name">Naam</label>
-        <input name="name" type="text" ref={register({ required: true })} />
+        <input
+          name="name"
+          type="text"
+          ref={register({ required: true, minLength: 3 })}
+        />
         {errors.name?.type === "required" && <p>Vul aub uw naam in</p>}
+        {errors.name?.type === "minLength" && (
+          <p>Uw naam moet ten minste 3 karakters zijn</p>
+        )}
         <label htmlFor="email">Email</label>
         <input name="email" type="email" ref={register} />
         <label htmlFor="body">Comment</label>
