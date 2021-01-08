@@ -24,15 +24,12 @@ export default function CommentForm() {
   async function postComment(data) {
     console.log("WAT IS ER INGEVULD:", data);
     try {
-      const response = await axios.post(
-        "https://jsonplaceholder.typicde.com/comments",
-        {
-          name: data.name,
-          email: data.email,
-          body: data.body,
-          postId: data.postId,
-        }
-      );
+      const response = await axios.post("http://localhost:8080/comments", {
+        name: data.name,
+        email: data.email,
+        body: data.body,
+        postId: parseInt(data.postId),
+      });
       setSucces(true);
 
       console.log("WAT KRIJGEN WE TERUG VAN DE API?", response);
