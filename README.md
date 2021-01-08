@@ -34,7 +34,7 @@ Vraag: is er nog meer dan register, handleSubmit, errors?
       - [x] ten minste 3 karakters
       - [x] alleen abcd etc.. geen ~/@,
     - email
-      - [ ] Er moet @ (het moet een email zijn)
+      - [x] Er moet @ (het moet een email zijn)
       - [ ] required
     - comment
     - postId

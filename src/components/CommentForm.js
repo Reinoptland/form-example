@@ -36,7 +36,16 @@ export default function CommentForm() {
           <p>Gebruik alstublieft a tot z en spaties, geen speciale tekens</p>
         )}
         <label htmlFor="email">Email</label>
-        <input name="email" type="email" ref={register} />
+        <input
+          name="email"
+          type="text"
+          ref={register({
+            validate: (value) => value.includes("@"),
+          })}
+        />
+        {errors.email?.type === "validate" && (
+          <p>Je moet een @ in je email adress hebben sufferd</p>
+        )}
         <label htmlFor="body">Comment</label>
         <textarea name="body" cols="30" rows="10" ref={register}></textarea>
         <label htmlFor="postId">Op welke post wil je reageren</label>
