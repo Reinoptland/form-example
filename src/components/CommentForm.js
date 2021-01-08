@@ -16,12 +16,12 @@ export default function CommentForm() {
     <div>
       <h2>COMMENT FORM</h2>
       <form onSubmit={handleSubmit(postComment)}>
-        <label htmlFor="voornaam">Naam</label>
-        <input name="voornaam" type="text" ref={register} />
+        <label htmlFor="name">Naam</label>
+        <input name="name" type="text" ref={register} />
         <label htmlFor="email">Email</label>
         <input name="email" type="email" ref={register} />
-        <label htmlFor="comment">Comment</label>
-        <textarea name="comment" cols="30" rows="10" ref={register}></textarea>
+        <label htmlFor="body">Comment</label>
+        <textarea name="body" cols="30" rows="10" ref={register}></textarea>
         <label htmlFor="postId">Op welke post wil je reageren</label>
         <select name="postId" ref={register}>
           <option>1</option>
