@@ -24,9 +24,20 @@ Vraag: is er nog meer dan register, handleSubmit, errors?
   - [x] Invoer velden maken
   - [x] Elk invoer veld moet een "name" attribuut hebben
   - [x] Submit knop
-  - [ ] Importeren useForm
-- Validatie
-- Feedback
+  - [x] Importeren useForm
+  - [x] Invoer velden registreren
+  - [x] handleSubmit ingesteld
+- Validatie & Feedback
+  - [ ] Wanneer is het geldig & Een foutmelding (feedback)
+    - name:
+      - [x] required (je moet het invullen)
+      - [ ] alleen abcd etc.. geen ~/@,
+      - [ ] ten minste 3 karakters
+    - email
+      - [ ] Er moet @ (het moet een email zijn)
+      - [ ] required
+    - comment
+    - postId
 
 ## De input uit het formulier halen en wegsturen (naar een api / backend)
 

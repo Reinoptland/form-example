@@ -2,7 +2,9 @@ import "./CommentForm.css";
 import { useForm } from "react-hook-form";
 
 export default function CommentForm() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
+
+  console.log("errors", errors);
   //   console.log("WAT KOMT ER UIT USEFORM?", what);
   // name: input -> type text & label
   // email: input -> type email & label
@@ -17,7 +19,8 @@ export default function CommentForm() {
       <h2>COMMENT FORM</h2>
       <form onSubmit={handleSubmit(postComment)}>
         <label htmlFor="name">Naam</label>
-        <input name="name" type="text" ref={register} />
+        <input name="name" type="text" ref={register({ required: true })} />
+        {errors.name?.type === "required" && <p>Vul aub uw naam in</p>}
         <label htmlFor="email">Email</label>
         <input name="email" type="email" ref={register} />
         <label htmlFor="body">Comment</label>
