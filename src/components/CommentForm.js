@@ -1,8 +1,11 @@
+import { useState } from "react";
 import "./CommentForm.css";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 export default function CommentForm() {
-  const { register, handleSubmit, errors } = useForm();
+  const [succes, setSucces] = useState(null);
+  const { register, handleSubmit, errors, reset } = useForm();
 
   console.log("errors", errors);
   //   console.log("WAT KOMT ER UIT USEFORM?", what);
@@ -10,8 +13,36 @@ export default function CommentForm() {
   // email: input -> type email & label
   // body: textarea -> type text & label
   // postId: select -> options & label
-  function postComment(data) {
+
+  // Submit handler
+  // Toegang tot de data die de gebruiker heeft ingevuld
+
+  // axios.post('/login', {
+  //   firstName: 'Finn',
+  //   lastName: 'Williams'
+  // });
+  async function postComment(data) {
     console.log("WAT IS ER INGEVULD:", data);
+    try {
+      const response = await axios.post(
+        "https://jsonplaceholder.typicde.com/comments",
+        {
+          name: data.name,
+          email: data.email,
+          body: data.body,
+          postId: data.postId,
+        }
+      );
+      setSucces(true);
+
+      console.log("WAT KRIJGEN WE TERUG VAN DE API?", response);
+    } catch (error) {
+      setSucces(false);
+    }
+  }
+
+  if (succes) {
+    return <h1>Bedankt voor je comment</h1>;
   }
 
   return (

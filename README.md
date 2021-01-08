@@ -14,7 +14,7 @@
 }
 ```
 
-HookForm
+Wat we gebruiken: HookForm
 
 Vraag: is er nog meer dan register, handleSubmit, errors?
 
@@ -28,17 +28,29 @@ Vraag: is er nog meer dan register, handleSubmit, errors?
   - [x] Invoer velden registreren
   - [x] handleSubmit ingesteld
 - Validatie & Feedback
-  - [ ] Wanneer is het geldig & Een foutmelding (feedback)
+  - [x] Wanneer is het geldig & Een foutmelding (feedback)
     - name:
       - [x] required (je moet het invullen)
       - [x] ten minste 3 karakters
       - [x] alleen abcd etc.. geen ~/@,
     - email
       - [x] Er moet @ (het moet een email zijn)
-      - [ ] required
     - comment
     - postId
 
 ## De input uit het formulier halen en wegsturen (naar een api / backend)
 
-Axios
+Wat we gebruiken: Axios
+
+- [x] npm install axios
+- [x] import axios
+- [x] async function
+- [x] axios.post() -> hoe moeten we dat configureren
+  - url
+  - data
+- [x] Response checken, is het gelukt
+
+## Feedback geven: het is gelukt
+
+- [x] Bijhouden of de info verstuurd is
+- [x] Feedback geven aan de gebruiker
