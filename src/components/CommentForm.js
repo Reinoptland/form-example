@@ -2,27 +2,13 @@ import { useState } from "react";
 import "./CommentForm.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import FormError from "./FormError";
 
 export default function CommentForm() {
   const [status, setStatus] = useState("idle");
   const { register, handleSubmit, errors } = useForm();
 
-  console.log("errors", errors);
-  //   console.log("WAT KOMT ER UIT USEFORM?", what);
-  // name: input -> type text & label
-  // email: input -> type email & label
-  // body: textarea -> type text & label
-  // postId: select -> options & label
-
-  // Submit handler
-  // Toegang tot de data die de gebruiker heeft ingevuld
-
-  // axios.post('/login', {
-  //   firstName: 'Finn',
-  //   lastName: 'Williams'
-  // });
   async function postComment(data) {
-    // console.log("WAT IS ER INGEVULD:", data);
     setStatus("submitting");
     try {
       const response = await axios.post(
@@ -58,13 +44,20 @@ export default function CommentForm() {
               pattern: /^[a-zA-Z ]*$/,
             })}
           />
-          {errors.name?.type === "required" && <p>Vul aub uw naam in</p>}
-          {errors.name?.type === "minLength" && (
-            <p>Uw naam moet ten minste 3 karakters zijn</p>
-          )}
-          {errors.name?.type === "pattern" && (
-            <p>Gebruik alstublieft a tot z en spaties, geen speciale tekens</p>
-          )}
+          <FormError
+            condition={errors.name?.type === "required"}
+            message={"Vul aub uw naam in"}
+          />
+          <FormError
+            condition={errors.name?.type === "minLength"}
+            message={"Uw naam moet ten minste 3 karakters zijn"}
+          />
+          <FormError
+            condition={errors.name?.type === "pattern"}
+            message={
+              "Gebruik alstublieft a tot z en spaties, geen speciale tekens"
+            }
+          />
           <label htmlFor="email">Email</label>
           <input
             name="email"
@@ -73,9 +66,10 @@ export default function CommentForm() {
               validate: (value) => value.includes("@"),
             })}
           />
-          {errors.email?.type === "validate" && (
-            <p>Je moet een @ in je email adress hebben sufferd</p>
-          )}
+          <FormError
+            condition={errors.email?.type === "validate"}
+            message={"Je moet een @ in je email adress hebben sufferd"}
+          />
           <label htmlFor="body">Comment</label>
           <textarea name="body" cols="30" rows="10" ref={register}></textarea>
           <label htmlFor="postId">Op welke post wil je reageren</label>
