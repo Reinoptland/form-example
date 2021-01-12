@@ -3,6 +3,7 @@ import "./CommentForm.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import FormError from "./FormError";
+import TextInput from "./TextInput";
 
 export default function CommentForm() {
   const [status, setStatus] = useState("idle");
@@ -34,15 +35,15 @@ export default function CommentForm() {
       {status === "success" && <h3>Bedankt voor je comment!</h3>}
       {["idle", "submitting", "error"].includes(status) && (
         <form onSubmit={handleSubmit(postComment)}>
-          <label htmlFor="name">Naam</label>
-          <input
-            name="name"
-            type="text"
-            ref={register({
+          <TextInput
+            register={register}
+            validationOptions={{
               required: true,
               minLength: 3,
               pattern: /^[a-zA-Z ]*$/,
-            })}
+            }}
+            labelText="Naam"
+            inputName="name"
           />
           <FormError
             condition={errors.name?.type === "required"}
@@ -58,13 +59,13 @@ export default function CommentForm() {
               "Gebruik alstublieft a tot z en spaties, geen speciale tekens"
             }
           />
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            type="text"
-            ref={register({
+          <TextInput
+            register={register}
+            validationOptions={{
               validate: (value) => value.includes("@"),
-            })}
+            }}
+            labelText="Email"
+            inputName="email"
           />
           <FormError
             condition={errors.email?.type === "validate"}

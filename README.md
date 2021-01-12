@@ -68,3 +68,15 @@ Veralgemeniseren (abstracting)
 
 - [x] Waarschijnlijk moet je props doorgeven aan je component
 - [x] Content gehardcode is (altijd hetzelfde is) moet je afhankelijk maken van een prop
+
+Herbruikbare input
+
+- [x] Bestandje aanmaken
+- [x] De juiste imports gebruiken
+- [x] De code die je wil hergebruiken moet je in het bestandje zetten
+- [x] De code die je weghaalt, moet vervangen voor het component wat je schrijft
+
+Veralgemeniseren (abstracting)
+
+- [x] Waarschijnlijk moet je props doorgeven aan je component
+- [x] Content gehardcode is (altijd hetzelfde is) moet je afhankelijk maken van een prop
