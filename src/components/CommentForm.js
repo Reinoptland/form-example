@@ -1,3 +1,5 @@
+import DropDownInput from "./DropDownInput";
+import TextAreaInput from "./TextAreaInput";
 import { useState } from "react";
 import "./CommentForm.css";
 import { useForm } from "react-hook-form";
@@ -71,14 +73,23 @@ export default function CommentForm() {
             condition={errors.email?.type === "validate"}
             message={"Je moet een @ in je email adress hebben sufferd"}
           />
-          <label htmlFor="body">Comment</label>
-          <textarea name="body" cols="30" rows="10" ref={register}></textarea>
-          <label htmlFor="postId">Op welke post wil je reageren</label>
-          <select name="postId" ref={register}>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </select>
+          <TextAreaInput
+            register={register}
+            inputName="body"
+            labelText="Comment"
+            cols="30"
+            rows="10"
+          />
+          <DropDownInput
+            register={register}
+            options={[
+              <option key={1}>1</option>,
+              <option key={2}>2</option>,
+              <option key={3}>3</option>,
+            ]}
+            inputName={"postId"}
+            labelText={"Op welke post wil je comment sturen"}
+          />
           {status === "error" && (
             <h3>Oh jee, er ging iets mis, probeer het nog eens</h3>
           )}
