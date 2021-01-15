@@ -3,3 +3,69 @@ textarea,
 select {
   display: block;
 }
+
+/* NO! Not like this */
+/* .naast-elkaar {
+  display: inline;
+}
+
+.onder-elkaar {
+  display: block;
+}
+
+#commentForm {
+  display: inline;
+} */
+
+/* 
+SCSS
+.comment-form {
+  &__text-put {
+
+  }
+
+  &__label {
+    
+  }
+
+  &__feedback {
+    &--success{
+      
+    }
+  }
+} 
+*/
+
+/* Block */
+.comment-form {
+}
+
+/* Elements */
+
+.comment-form__label {
+}
+
+.comment-form__text-input {
+}
+
+.comment-form__feedback {
+  font-size: 40px;
+  color: pink;
+}
+
+.comment-form__feedback
+
+/* Modifiers */
+
+.comment-form__feedback--failure {
+  color: red;
+}
+
+.comment-form__feedback--success {
+  color: green;
+}
+
+/* Niet meer dan 1 level diep et element, dus niet: */
+/* .comment-form__feedback__span {
+
+} */
