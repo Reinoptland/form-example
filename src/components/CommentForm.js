@@ -34,9 +34,13 @@ export default function CommentForm() {
   return (
     <div>
       <h2>COMMENT FORM</h2>
-      {status === "success" && <h3>Bedankt voor je comment!</h3>}
+      {status === "success" && (
+        <h3 className="comment-form__feedback comment-form__feedback--success">
+          Bedankt voor je comment!
+        </h3>
+      )}
       {["idle", "submitting", "error"].includes(status) && (
-        <form onSubmit={handleSubmit(postComment)}>
+        <form className="comment-form" onSubmit={handleSubmit(postComment)}>
           <TextInput
             register={register}
             validationOptions={{
@@ -91,7 +95,9 @@ export default function CommentForm() {
             labelText={"Op welke post wil je comment sturen"}
           />
           {status === "error" && (
-            <h3>Oh jee, er ging iets mis, probeer het nog eens</h3>
+            <h3 className="comment-form__feedback comment-form__feedback--failure">
+              Oh jee, er ging iets mis, probeer het nog eens
+            </h3>
           )}
           <input type="submit" disabled={status === "submitting"} />
         </form>

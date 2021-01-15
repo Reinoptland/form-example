@@ -80,3 +80,32 @@ Veralgemeniseren (abstracting)
 
 - [x] Waarschijnlijk moet je props doorgeven aan je component
 - [x] Content gehardcode is (altijd hetzelfde is) moet je afhankelijk maken van een prop
+
+## BEM
+
+probleem:
+
+- Volgorde in css maakt uit
+- Specifiteit maakt uit -> tag < class < id < important
+- Je hebt snel moeilijk debuggable css
+
+Block Element Modifier
+
+- Regel 1: gebruik alleen class selectors -> geen tagSelectors, geen id selectors, geen important
+- Regel 2: alle css classes die je schrijft gaan van algemeen (bovenaan) naar specifiek (onderaan)
+
+Block
+
+- Onderdeel van je website (vaak herbruikbaar) -> CommentFormulier, InlogForm, Heading (h2), Knopje
+- class: commentformulier, heading
+
+Element
+
+- Onderdeel van block wat niet op zichzelf gebruikt kan worden -> TextInput, Feedback
+- class: commentformulier**textinput, inlogformulier**textinput
+- class: formulier\_\_feedback
+
+Modifier
+
+- Variatie van Block of een Element -> Feedback: succes & failure
+- class: formulier**feedback--success, formulier**feedback--failure

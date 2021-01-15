@@ -11,6 +11,8 @@ export default function TextAreaInput({
     <>
       <label htmlFor={inputName}>{labelText}</label>
       <textarea
+        id="commentForm"
+        className={"naast-elkaar onder-elkaar"}
         name={inputName}
         cols={cols}
         rows={rows}
